@@ -32,6 +32,14 @@
 	padding: 50px 0;
 	font-size: 20px;
 }
+.grid-container > .item1
+{
+	background-color:white;
+	text-align: center;
+	padding: 50px 0;
+	font-size: 75px;
+
+}
 .grid-container > .item2
 {
 	background-color:white;
@@ -39,7 +47,8 @@
 	padding: 50px 0;
 	font-size: 20px;
 
-}.grid-container > .item3
+}
+.grid-container > .item3
 {
 	background-color:white;
 	text-align: left;
