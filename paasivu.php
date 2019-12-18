@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 error_reporting (E_ALL ^ E_NOTICE);
 ?>
 
@@ -18,7 +18,7 @@ error_reporting (E_ALL ^ E_NOTICE);
 	
 	<div class="item2">
 	Kirjautuminen: <br>
-	<form method="post" action="paasivu.php">
+	<form method="post" action="kirjaudu.php">
 	Käyttäjätunnus: <input type="text" name="tunnus"></input><br>
 	Salasana: <input type="password" name="salasana"></input><br>
 	<button type="submit">Kirjaudu</button>
