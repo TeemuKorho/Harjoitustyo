@@ -51,7 +51,7 @@
 .grid-container > .item3
 {
 	background-color:white;
-	text-align: left;
+	//text-align: left;
 	padding: 50px 0;
 	font-size: 20px;
 }
