@@ -1,31 +1,104 @@
+<?php
+session_start();
+ 
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
+{
+  header("location: paasivu.php");
+  exit;
+}
+ 
+require_once "config.php";
+ 
+$username = $password = "";
+$username_err = $password_err = "";
+ 
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{ 
+    if(empty(trim($_POST["username"])))
+	{
+        $username_err = "Please enter username.";
+    } 
+	else
+	{
+        $username = trim($_POST["username"]);
+    }
+    
+    if(empty(trim($_POST["password"])))
+	{
+        $password_err = "Please enter your password.";
+    } 
+	else
+	{
+        $password = trim($_POST["password"]);
+    }
+    
+    if(empty($username_err) && empty($password_err))
+	{
+        $sql = "SELECT Avain, Nimi, Salasana FROM kayttaja WHERE nimi = ?";
+        
+        if($stmt = mysqli_prepare($link, $sql))
+		{
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            
+            $param_username = $username;
+            
+            if(mysqli_stmt_execute($stmt))
+			{
+                mysqli_stmt_store_result($stmt);
+                
+                if(mysqli_stmt_num_rows($stmt) == 1)
+				{
+                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                    if(mysqli_stmt_fetch($stmt))
+					{
+                        if(password_verify($password, $hashed_password))
+						{
+                            session_start();
+                            
+                            $_SESSION["loggedin"] = true;
+                            $_SESSION["id"] = $id;
+                            $_SESSION["username"] = $username;                            
+                            
+                            header("location: paasivu.php");
+                        } 
+						else
+						{
+                            $password_err = "The password you entered was not valid.";
+                        }
+                    }
+                } 
+				else
+				{
+                    $username_err = "No account found with that username.";
+                }
+            } 
+			else
+			{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+        }
+        
+        mysqli_stmt_close($stmt);
+    }
+    
+    mysqli_close($link);
+}
+?>
+
 <!DOCTYPE html>
 <html>
+<head>
+	<meta charset="UTF-8">
+	<title>Kirjautuminen</title>
+</head>
 <body>
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "kayttaja";
 
-$conn = mysqli_connect($servername, $username, $password);
+<h2>Kirjaudu sisään nähdäksesi sivun sisällön</h2>
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+Käyttäjätunnus: <input type="text" name="username" value="<?php echo $username; ?>"><br><br>
+Salasana: <input type="password" name="password"><br><br>
+<input type="submit" value="Kirjaudu">
+</form>
 
-if (!$conn) 
-{
-    die("Connection failed: " . mysqli_connect_error());
-}
-$sql = "SELECT Nimi, Salasana, Tyyppi FROM kayttaja";
-$result = mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) > 0) {
-    // output data of each row
-    while($row = mysqli_fetch_assoc($result)) {
-        echo "id: " . $row["Nimi"]. " - Name: " . $row["Salasana"]. " " . $row["Tyyppi"]. "<br>";
-    }
-} else {
-    echo "0 results";
-}
-
-mysqli_close($conn);
-?>
 </body>
 </html>
