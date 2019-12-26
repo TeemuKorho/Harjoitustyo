@@ -1,39 +1,37 @@
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>Pääsivu</title>
-	<link rel="stylesheet" href="tyyli.css">
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <div class="grid-container">
-	<div class="item1">Puuta Heinää Uutisia</div>
+	<div class="item1">Puuta Heinää Uutisia
+	</div>
 	
 	<div class="item2">
-	Kirjautuminen: <br>
-	<form method="post" action="paasivu.html">
-	Käyttäjätunnus: <input type="text" name="tunnus"></input><br>
-	Salasana: <input type="password" name="salasana"></input><br>
-	<button type="submit">Kirjaudu</button>
+	<a href="logout.php" class="btn btn-danger">Kirjaudu ulos</a>
 	</div>
 	
 	<div class="item3">
-	<?php
-	echo "fuck";
-	?>
+	<h1>Uutiset tulevat tähän sitten</h1>
 	</div>
 	
-	<div class="item4">Copyright pending</div>
+	<div class="item4">Copyright nobody</div>
 </div>
-<?php
-
-$uname = $_POST["tunnus"];
-$pw = $_POST["salasana"];
-
-echo "<h1>$uname ja $pw</h1>";
-
-?>
 </body>
 </html>
