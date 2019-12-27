@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 { 
     if(empty(trim($_POST["username"])))
 	{
-        $username_err = "Please enter a username.";
+        $username_err = "Syötä käyttäjätunnus.";
     }
 	else
 	{
@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 
                 if(mysqli_stmt_num_rows($stmt) == 1)
 				{
-                    $username_err = "This username is already taken.";
+                    $username_err = "Käyttäjätunnus on jo olemassa.";
                 } 
 				else
 				{
@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             } 
 			else
 			{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Jokin meni vikaan. Yritä myöhemmin uudelleen.";
             }
         }
          
@@ -44,11 +44,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     
     if(empty(trim($_POST["password"])))
 	{
-        $password_err = "Please enter a password.";     
+        $password_err = "Syötä salasana.";     
     } 
 	elseif(strlen(trim($_POST["password"])) < 6)
 	{
-        $password_err = "Password must have atleast 6 characters.";
+        $password_err = "Salasanassa on oltava vähintään 6 merkkiä.";
     } 
 	else
 	{
@@ -57,14 +57,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     
     if(empty(trim($_POST["confirm_password"])))
 	{
-        $confirm_password_err = "Please confirm password.";     
+        $confirm_password_err = "Syötä salasana uudelleen.";     
     } 
 	else
 	{
         $confirm_password = trim($_POST["confirm_password"]);
         if(empty($password_err) && ($password != $confirm_password))
 		{
-            $confirm_password_err = "Password did not match.";
+            $confirm_password_err = "Salasana ei ole sama.";
         }
     }
     
@@ -85,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             } 
 			else
 			{
-                echo "Something went wrong. Please try again later.";
+                echo "Jokin meni vikaan. Yritä myöhemmin uudelleen.";
             }
         }
          
@@ -103,8 +103,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     <title>Luo tunnus</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
+        body
+		{ 
+			font: 14px sans-serif; 
+		}
+        .wrapper
+		{ 
+			width: 350px; 
+			padding: 20px;
+			height: 200px;
+			width: 400px;
+			
+			position: fixed;
+			left: 50%;
+			margin-top: 200px;
+			margin-left: -200px;
+		}
     </style>
 </head>
 <body>

@@ -16,11 +16,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 { 
     if(empty(trim($_POST["new_password"])))
 	{
-        $new_password_err = "Please enter the new password.";     
+        $new_password_err = "Syötä uusi salasana.";     
     } 
 	elseif(strlen(trim($_POST["new_password"])) < 6)
 	{
-        $new_password_err = "Password must have atleast 6 characters.";
+        $new_password_err = "Salasanassa on oltava vähintään 6 merkkiä.";
     } 
 	else
 	{
@@ -29,14 +29,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     
     if(empty(trim($_POST["confirm_password"])))
 	{
-        $confirm_password_err = "Please confirm the password.";
+        $confirm_password_err = "Varmista salasana.";
     } 
 	else
 	{
         $confirm_password = trim($_POST["confirm_password"]);
         if(empty($new_password_err) && ($new_password != $confirm_password))
 		{
-            $confirm_password_err = "Password did not match.";
+            $confirm_password_err = "Syöttämäsi salasana ei vastannut uutta salasanaa. Yritä uudelleen.";
         }
     }
 
@@ -59,7 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             } 
 			else
 			{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Jokin meni vikaan. Yritä myöhemmin uudelleen.";
             }
         }
         

@@ -3,7 +3,7 @@ session_start();
  
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
 {
-  header("location: paasivu.html");
+  header("location: paasivu.php");
   exit;
 }
  
@@ -17,15 +17,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
  
     if(empty(trim($_POST["username"])))
 	{
-        $username_err = "Please enter username.";
-    } else
+        $username_err = "Syötä käyttäjätunnus.";
+    } 
+	else
 	{
         $username = trim($_POST["username"]);
     }
     
     if(empty(trim($_POST["password"])))
 	{
-        $password_err = "Please enter your password.";
+        $password_err = "Syötä salasana.";
     } 
 	else
 	{
@@ -59,20 +60,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;                            
                             
-                            header("location: paasivu.html");
+                            header("location: paasivu.php");
                         } 
 						else
 						{
-                            $password_err = "The password you entered was not valid.";
+                            $password_err = "Syöttämäsi salasana ei kelpaa.";
                         }
                     }
                 } else
 				{
-                    $username_err = "No account found with that username.";
+                    $username_err = "Käyttäjätunnusta ei löydy.";
                 }
             } else
 			{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Jokin meni vikaan. Yritä myöhemmin uudelleen.";
             }
         }
         
@@ -90,13 +91,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     <title>Kirjaudu</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
+        body
+		{ 
+			font: 14px sans-serif; 
+		}
+        .wrapper
+		{ 
+			width: 350px; 
+			padding: 20px;
+			height: 200px;
+			width: 400px;
+			
+			position: fixed;
+			left: 50%;
+			margin-top: 200px;
+			margin-left: -200px;
+		}
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <h2>Tämän sivun käyttäminen vaatii käyttäjätunnuksen</h2>
+        <h2>Tämä sivu vaatii käyttäjätunnuksen</h2>
         <p>Kirjaudu sisään.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">

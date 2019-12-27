@@ -1,9 +1,8 @@
 <?php
-// Initialize the session
 session_start();
  
-// Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
+{
     header("location: login.php");
     exit;
 }
@@ -20,18 +19,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <body>
 
 <div class="grid-container">
-	<div class="item1">Puuta Heinää Uutisia
-	</div>
+	<div class="item1">Uutisia</div>
 	
 	<div class="item2">
 	<a href="logout.php" class="btn btn-danger">Kirjaudu ulos</a>
 	</div>
 	
 	<div class="item3">
-	<h1>Uutiset tulevat tähän sitten</h1>
+	<h1>Uutiset tulevat sitten tähän</h1>
 	</div>
 	
-	<div class="item4">Copyright nobody</div>
+	<div class="item4">Copyright by nobody</div>
 </div>
 </body>
 </html>
