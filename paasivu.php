@@ -22,12 +22,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 	<div class="item1">Uutisia</div>
 	
 	<div class="item2">
-	<a href="logout.php" class="btn btn-danger">Kirjaudu ulos</a>
-	</div>
+	<a href="logout.php">Kirjaudu ulos</a></div>
 	
 	<div class="item3">
-	<h1>Uutiset tulevat sitten tähän</h1>
-	</div>
+	<?php include("uutiset.php"); ?></div>
 	
 	<div class="item4">Copyright by nobody</div>
 </div>
