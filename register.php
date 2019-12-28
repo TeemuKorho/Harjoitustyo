@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $confirm_password = trim($_POST["confirm_password"]);
         if(empty($password_err) && ($password != $confirm_password))
 		{
-            $confirm_password_err = "Salasana ei ole sama.";
+            $confirm_password_err = "Salasana ei täsmää.";
         }
     }
     
@@ -100,7 +100,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Luo tunnus</title>
+    <title>Rekisteröityminen</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         body

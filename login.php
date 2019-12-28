@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         } 
 						else
 						{
-                            $password_err = "Syöttämäsi salasana ei kelpaa.";
+                            $password_err = "Syöttämäsi salasana meni väärin.";
                         }
                     }
                 } else

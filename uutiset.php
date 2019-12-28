@@ -2,9 +2,11 @@
 echo "<h2>Presidentti Trump valittiin kolmannelle virkakaudelle</h2>";
 echo "<p>Murskavoitto repuplikaaneille</p>";
 echo "<br>";
+echo "<br>";
 
 echo "<h2>Demokraattien entinen presidenttiehdokas Hillary Clinton vankilaan lukuisten rikosten vuoksi</h2>";
-echo '<p>Bill Clinton: "En voinut pitää hänen rikoksiaan salassa enää."</p>';
+echo '<p>Bill Clinton: "En voinut pitää Hillaryn rikoksia salassa enää."</p>';
+echo "<br>";
 echo "<br>";
 
 echo "<h2>Demokraattien puolue hajosi</h2>";
